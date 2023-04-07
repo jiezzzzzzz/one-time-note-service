@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+
+<form method="POST">
+  {% csrf_token %}
+    <label for="special_requests">Особые пожелания:</label>
+  <textarea id="special_requests" name="special_requests"></textarea><br>
+
+  <button type="submit">Отправить заявку</button>
+</form>
+</form>
+
+</html>
