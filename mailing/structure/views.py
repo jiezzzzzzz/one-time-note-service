@@ -19,8 +19,8 @@ def index(request):
             str_cipher_text = cipher_text.decode('ascii')
             random_number = random.randint(1000000, 9999999)
             while True:
-                n = Note.objects.filter(number=random_number).first()
-                if n:
+                note_object = Note.objects.filter(number=random_number).first()
+                if note_object:
                     random_number = random.randint(1000000, 9999999)
                     continue
                 break
@@ -46,8 +46,8 @@ def decrypt(request, random_number, str_key):
             cipher_note = get_object_or_404(Note, number=random_number)
             cipher_text = cipher_note.crypto_text.encode('ascii')
             key = str_key.encode('ascii')
-            f = Fernet(key)
-            text = f.decrypt(cipher_text)
+            fernet = Fernet(key)
+            text = fernet.decrypt(cipher_text)
 
             text = text.decode('utf-8')
             cipher_note.delete()
