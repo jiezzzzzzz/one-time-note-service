@@ -31,14 +31,14 @@ key = Fernet.generate_key()
 В случае правильного ответа и после нажатия кнопки "расшифровать" пользователь попадает на страницу с расшифрованным текстом. Расшифровывается он вот так: 
 
 
-cipher_note = get_object_or_404(Note, number=random_number)
-            cipher_text = cipher_note.crypto_text.encode('ascii')
-            key = str_key.encode('ascii')
-            fernet = Fernet(key)
-            text = fernet.decrypt(cipher_text)
+            cipher_note = get_object_or_404(Note, number=random_number)
+                        cipher_text = cipher_note.crypto_text.encode('ascii')
+                        key = str_key.encode('ascii')
+                        fernet = Fernet(key)
+                        text = fernet.decrypt(cipher_text)
 
-            text = text.decode('utf-8')
-            cipher_note.delete()
+                        text = text.decode('utf-8')
+                        cipher_note.delete()
             
 
 При этом сам текст в базу данных не сохраняется, только его зашифрованное представление.
