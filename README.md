@@ -13,17 +13,17 @@
 
 Пользователю предлагается ввести текст в специальную форму. Далее этот текст шифруется следующим образом: 
 
-key = Fernet.generate_key()
-            str_key = key.decode('ascii')
-            fernet = Fernet(key)
-            bin_string = form.cleaned_data['text'].encode('utf-8')
-            cipher_text = fernet.encrypt(bin_string)
-            str_cipher_text = cipher_text.decode('ascii')
-            random_number = random.randint(1000000, 9999999)
-            while True:
-                n = Note.objects.filter(number=random_number).first()
-                if n:
-                    random_number = random.randint(1000000, 9999999)
+            key = Fernet.generate_key()
+                        str_key = key.decode('ascii')
+                        fernet = Fernet(key)
+                        bin_string = form.cleaned_data['text'].encode('utf-8')
+                        cipher_text = fernet.encrypt(bin_string)
+                        str_cipher_text = cipher_text.decode('ascii')
+                        random_number = random.randint(1000000, 9999999)
+                        while True:
+                                    note_object = Note.objects.filter(number=random_number).first()
+                                    if note_objetc:
+                                                random_number = random.randint(1000000, 9999999)
                     
 
 
@@ -61,11 +61,11 @@ key = Fernet.generate_key()
  
  2. Создать файл <code>.env</code> и поместить в него секретный ключ Джанго:
  
- SECRET_KEY = 
+             SECRET_KEY = 
  
  3. Накатить миграций:
 
-python manage.py migrate
+            python manage.py migrate
 
  4.  Готово!
 
